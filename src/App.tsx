@@ -656,11 +656,27 @@ export default function App() {
             </div>
           </div>
           
-          <div className="border-t border-white/10 pt-8 text-xs text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>
-              <strong>Aviso:</strong> Conteúdo informativo. Atendimento e condutas são individualizados após avaliação. Em situações de risco, procure serviço de urgência.
-            </p>
-            <p>&copy; {new Date().getFullYear()} Suzana Santos. Todos os direitos reservados.</p>
+          <div className="border-t border-white/10 pt-8 flex flex-col gap-6">
+            <div className="text-xs text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="max-w-3xl">
+                <strong>Aviso:</strong> Conteúdo informativo. Atendimento e condutas são individualizados após avaliação. Em situações de risco, procure serviço de urgência.
+              </p>
+              <p className="shrink-0">&copy; {new Date().getFullYear()} Suzana Santos. Todos os direitos reservados.</p>
+            </div>
+            
+            <div className="text-center flex items-center justify-center">
+              <p className="text-[11px] text-white/40 flex items-center gap-1.5">
+                Desenvolvido por
+                <a 
+                  href="https://wa.me/5562999465725" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="font-medium hover:text-white transition-colors"
+                >
+                  Flávio Corá
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
