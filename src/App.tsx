@@ -13,12 +13,15 @@ import {
   ChevronDown,
   AlertCircle,
   BookOpen,
-  UserCheck
+  UserCheck,
+  Instagram,
+  Mail
 } from 'lucide-react';
 
 const WHATSAPP_LINK = "https://wa.me/556291281434";
 // Using a direct link format for Google Drive images
 const LOGO_URL = "https://lh3.googleusercontent.com/d/1GMbvFCPW0nuy6KHkJLzUJsRhnqFAge9e";
+const HEADER_LOGO_URL = "https://lh3.googleusercontent.com/d/1iJGYeSMFhxK2XdYOCznyOpnY4wTAYMKS";
 const HERO_URL = "https://lh3.googleusercontent.com/d/1M-MNY7A_gzbfdJSFaG9OyuAEhOAvuwAV";
 
 const WhatsAppButton = ({ text, className = "", icon = true }: { text: string, className?: string, icon?: boolean }) => (
@@ -33,9 +36,9 @@ const WhatsAppButton = ({ text, className = "", icon = true }: { text: string, c
   </a>
 );
 
-const SectionHeading = ({ children, subtitle }: { children: React.ReactNode, subtitle?: string }) => (
+const SectionHeading = ({ children, subtitle, titleClassName = "text-brand-dark" }: { children: React.ReactNode, subtitle?: string, titleClassName?: string }) => (
   <div className="text-center mb-12">
-    <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">{children}</h2>
+    <h2 className={`text-3xl md:text-4xl font-serif font-bold mb-4 ${titleClassName}`}>{children}</h2>
     {subtitle && <p className="text-lg text-brand-text/80 max-w-2xl mx-auto">{subtitle}</p>}
   </div>
 );
@@ -46,63 +49,55 @@ export default function App() {
   return (
     <div className="min-h-screen bg-brand-bg font-sans text-brand-text overflow-x-hidden">
       {/* HEADER */}
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-brand-primary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <img 
-            src={LOGO_URL} 
-            alt="Suzana Santos Logo" 
-            className="h-12 object-contain"
-            onError={(e) => {
-              // Fallback if Google Drive image fails to load
-              (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=Suzana+Santos&background=C19A9A&color=fff&rounded=true&bold=true";
-            }}
-          />
+      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-primary/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
           <a 
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 text-brand-dark font-medium hover:text-brand-primary transition-colors"
+            className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#25D366] transition-colors text-sm"
           >
-            <MessageCircle className="w-5 h-5 text-[#25D366]" />
-            (62) 9128-1434
+            <MessageCircle className="w-4 h-4 text-[#25D366]" />
+            <span className="hidden sm:inline">(62) 9128-1434</span>
+          </a>
+          <a 
+            href="https://www.instagram.com/enfsuzanasantos/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#E1306C] transition-colors text-sm"
+          >
+            <Instagram className="w-4 h-4 text-[#E1306C]" />
+            <span className="hidden sm:inline">@enfsuzanasantos</span>
+          </a>
+          <a 
+            href="mailto:suzanangelica@hotmail.com"
+            className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-primary transition-colors text-sm"
+          >
+            <Mail className="w-4 h-4 text-brand-primary" />
+            <span className="hidden md:inline">suzanangelica@hotmail.com</span>
           </a>
         </div>
       </header>
 
       {/* HERO SECTION */}
-      <section className="relative pt-24 pb-32 lg:pt-32 lg:pb-40 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={HERO_URL} 
-            alt="Suzana Santos em atendimento" 
-            className="w-full h-full object-cover object-center"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=2000";
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-bg/95 via-brand-bg/90 to-brand-bg/40 backdrop-blur-[2px]"></div>
-          <div className="absolute inset-0 bg-black/10"></div>
-        </div>
-
+      <section className="relative pt-12 pb-16 lg:pt-8 lg:pb-20 overflow-hidden min-h-[calc(100vh-60px)] flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-8 xl:col-span-7"
+              className="order-2 lg:order-1"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-brand-dark font-medium text-sm mb-6 shadow-sm border border-brand-primary/20">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-light/50 text-brand-dark font-medium text-sm mb-6 shadow-sm border border-brand-primary/20">
                 <ShieldCheck className="w-4 h-4 text-brand-primary" />
                 <span>Segurança do Paciente & Evidência Científica</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-brand-dark leading-tight mb-6 drop-shadow-sm">
+              <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold text-brand-dark leading-tight mb-6 drop-shadow-sm">
                 Tratamento avançado de feridas + cursos para enfermagem
               </h1>
-              <p className="text-lg md:text-xl text-brand-text/90 mb-8 leading-relaxed max-w-2xl bg-white/40 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-sm">
-                Enfermeira há <strong>23 anos</strong>. Especialista em feridas e curativos há <strong>10 anos</strong>. Especialista em <strong>Segurança do Paciente</strong>. Professora responsável pela área de <strong>curativos graves</strong> em Aparecida de Goiânia. Atendimento e ensino com método, evidência e acompanhamento.
+              <p className="text-lg text-brand-text/90 mb-8 leading-relaxed max-w-2xl">
+                Enfermeira há <strong>23 anos</strong>. Especialista em feridas e curativos há <strong>10 anos</strong>. <strong>Estomaterapeuta</strong> e <strong>Laserterapeuta</strong>. Especialista em <strong>Segurança do Paciente</strong>. Professora responsável pela área de <strong>curativos graves</strong> em Aparecida de Goiânia. Atendimento e ensino com método, evidência e acompanhamento.
               </p>
               
               <ul className="space-y-3 mb-10 max-w-2xl">
@@ -114,7 +109,7 @@ export default function App() {
                   "Atuação em curativos graves domiciliares e em unidades de saúde",
                   "Formação de equipes: cursos e treinamentos em curativos graves"
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl shadow-sm border border-white/40">
+                  <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                     <span className="text-brand-text/90 font-medium">{item}</span>
                   </li>
@@ -132,10 +127,30 @@ export default function App() {
                   QUERO ATENDIMENTO
                 </a>
               </div>
-              <p className="text-sm text-brand-dark/80 mt-4 flex items-center gap-2 font-medium bg-white/50 backdrop-blur-sm inline-flex px-4 py-2 rounded-full">
+              <p className="text-sm text-brand-dark/80 mt-4 flex items-center gap-2 font-medium">
                 <AlertCircle className="w-4 h-4 text-brand-primary" />
                 Resposta no WhatsApp. Envie uma foto da ferida (se possível) e eu te digo o próximo passo.
               </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2 relative flex justify-center items-center w-full"
+            >
+              <div className="relative w-full max-w-lg lg:max-w-full">
+                <div className="absolute inset-0 bg-brand-primary/10 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
+                <img 
+                  src={HERO_URL} 
+                  alt="Suzana Santos em atendimento" 
+                  className="w-full h-auto max-h-[50vh] lg:max-h-[75vh] object-contain rounded-2xl shadow-xl bg-white"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=1000";
+                  }}
+                />
+              </div>
             </motion.div>
           </div>
         </div>
@@ -156,6 +171,7 @@ export default function App() {
                   {[
                     <><strong className="text-brand-dark">Suzana Santos</strong>, enfermeira há <strong>23 anos</strong></>,
                     <>Especialista em <strong>feridas e curativos</strong> há <strong>10 anos</strong></>,
+                    <><strong>Estomaterapeuta</strong> e <strong>Laserterapeuta</strong></>,
                     <>Especialista em <strong>Segurança do Paciente</strong></>,
                     <>Professora responsável pela área de <strong>curativos graves</strong> em Aparecida de Goiânia</>,
                     <>Atuação prática em <strong>curativos graves domiciliares</strong> e em <strong>unidades de saúde</strong></>,
@@ -328,7 +344,7 @@ export default function App() {
       {/* HOW IT WORKS */}
       <section className="py-20 bg-brand-dark text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading>Como funciona o atendimento?</SectionHeading>
+          <SectionHeading titleClassName="text-white">Como funciona o atendimento?</SectionHeading>
           
           <div className="grid md:grid-cols-4 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-brand-primary/30 z-0"></div>
@@ -366,7 +382,7 @@ export default function App() {
           </div>
           
           <div className="mt-16 text-center">
-            <WhatsAppButton text="CHAMAR NO WHATSAPP" className="bg-white text-brand-dark hover:bg-brand-light" />
+            <WhatsAppButton text="CHAMAR NO WHATSAPP" className="bg-[#25D366] hover:bg-[#20BD5A] text-white" />
           </div>
         </div>
       </section>
@@ -586,7 +602,7 @@ export default function App() {
       {/* FOOTER */}
       <footer className="bg-brand-dark text-white/60 py-12 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+          <div className="grid md:grid-cols-3 gap-8 items-start mb-12">
             <div className="flex items-center gap-4">
               <div className="bg-white p-2 rounded-xl">
                 <img 
@@ -604,8 +620,38 @@ export default function App() {
               </div>
             </div>
             
+            <div className="flex flex-col gap-3">
+              <h4 className="text-white font-bold mb-2">Contato</h4>
+              <a 
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-[#25D366] transition-colors text-sm"
+              >
+                <MessageCircle className="w-4 h-4" />
+                (62) 9128-1434
+              </a>
+              <a 
+                href="https://www.instagram.com/enfsuzanasantos/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-[#E1306C] transition-colors text-sm"
+              >
+                <Instagram className="w-4 h-4" />
+                @enfsuzanasantos
+              </a>
+              <a 
+                href="mailto:suzanangelica@hotmail.com"
+                className="flex items-center gap-2 hover:text-brand-primary transition-colors text-sm"
+              >
+                <Mail className="w-4 h-4" />
+                suzanangelica@hotmail.com
+              </a>
+            </div>
+
             <div className="md:text-right">
-              <p className="text-sm mb-1">Atuação: Goiânia e Aparecida de Goiânia</p>
+              <h4 className="text-white font-bold mb-4">Atendimento</h4>
+              <p className="text-sm mb-1">Goiânia e Aparecida de Goiânia</p>
               <p className="text-sm">(Domicílio e unidades de saúde)</p>
             </div>
           </div>
