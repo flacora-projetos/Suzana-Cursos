@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ShieldCheck, ArrowRight, CheckCircle2, Star } from 'lucide-react';
+import { ShieldCheck, ArrowRight, CheckCircle2, Star, Loader2 } from 'lucide-react';
 import { trackEvent } from '../components/Shared';
+import { submitLead } from '../services/leadService';
 
 export default function FormPage() {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ export default function FormPage() {
     phone: '',
     email: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   // Phone mask function
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,19 +30,37 @@ export default function FormPage() {
     setFormData({...formData, phone: value});
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     if (formData.phone.replace(/\D/g, '').length < 10) {
       alert("Por favor, insira um número de WhatsApp válido com DDD.");
       return;
     }
     
-    // Track lead generation
-    trackEvent('generate_lead');
-    
-    // FUTURE: Integrate with CRM or backend here
-    // For now, just simulate submission and redirect
-    navigate('/aula-liberada');
+    setIsSubmitting(true);
+    setErrorMsg('');
+
+    try {
+      const response = await submitLead({
+        name: formData.name,
+        whatsapp: formData.phone.replace(/\D/g, ''), // Send only numbers
+        email: formData.email
+      });
+
+      if (response.ok) {
+        // Track lead generation only on success
+        trackEvent('generate_lead');
+        navigate('/aula-liberada');
+      } else {
+        setErrorMsg(response.message || "Ocorreu um erro ao enviar seus dados.");
+        setIsSubmitting(false);
+      }
+    } catch (err) {
+      setErrorMsg("Ocorreu um erro de conexão. Por favor, tente novamente.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,6 +116,12 @@ export default function FormPage() {
 
             <div className="md:col-span-3 order-1 md:order-2 bg-brand-bg/30 p-6 md:p-8 rounded-2xl border border-brand-light">
               <form onSubmit={handleSubmit} className="space-y-5">
+                {errorMsg && (
+                  <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm font-medium">
+                    {errorMsg}
+                  </div>
+                )}
+                
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-brand-dark mb-1.5">
                     Seu Nome
@@ -103,7 +130,8 @@ export default function FormPage() {
                     type="text"
                     id="name"
                     required
-                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white disabled:opacity-60"
                     placeholder="Digite seu nome completo"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -118,7 +146,8 @@ export default function FormPage() {
                     type="tel"
                     id="phone"
                     required
-                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white disabled:opacity-60"
                     placeholder="(00) 00000-0000"
                     value={formData.phone}
                     onChange={handlePhoneChange}
@@ -134,7 +163,8 @@ export default function FormPage() {
                     type="email"
                     id="email"
                     required
-                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3.5 rounded-xl border border-brand-light focus:ring-2 focus:ring-brand-primary focus:border-brand-primary outline-none transition-all bg-white disabled:opacity-60"
                     placeholder="seu.melhor@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -144,10 +174,20 @@ export default function FormPage() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg text-lg"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg text-lg disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
                   >
-                    Quero assistir à aula gratuita
-                    <ArrowRight className="w-5 h-5" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Quero assistir à aula gratuita
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
                   </button>
                   <p className="text-center text-sm text-brand-dark/70 mt-3 font-medium">
                     Após o cadastro, você será direcionado imediatamente para a aula.
