@@ -1,42 +1,47 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { MessageCircle, Instagram, Mail } from 'lucide-react';
 import { WHATSAPP_LINK, LOGO_URL } from './Shared';
 
 export default function Layout() {
+  const location = useLocation();
+  const isFormPage = location.pathname === '/aula-gratis';
+
   return (
     <div className="min-h-screen bg-brand-bg font-sans text-brand-text overflow-x-hidden flex flex-col">
       {/* HEADER */}
-      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-primary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
-          <a 
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
-            className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#25D366] transition-colors text-sm"
-          >
-            <MessageCircle className="w-4 h-4 text-[#25D366]" />
-            <span className="hidden sm:inline">(62) 9128-1434</span>
-          </a>
-          <a 
-            href="https://www.instagram.com/enfsuzanasantos/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#E1306C] transition-colors text-sm"
-          >
-            <Instagram className="w-4 h-4 text-[#E1306C]" />
-            <span className="hidden sm:inline">@enfsuzanasantos</span>
-          </a>
-          <a 
-            href="mailto:suzanangelica@hotmail.com"
-            className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-primary transition-colors text-sm"
-          >
-            <Mail className="w-4 h-4 text-brand-primary" />
-            <span className="hidden md:inline">suzanangelica@hotmail.com</span>
-          </a>
-        </div>
-      </header>
+      {!isFormPage && (
+        <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brand-primary/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+            <a 
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
+              className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#25D366] transition-colors text-sm"
+            >
+              <MessageCircle className="w-4 h-4 text-[#25D366]" />
+              <span className="hidden sm:inline">(62) 9128-1434</span>
+            </a>
+            <a 
+              href="https://www.instagram.com/enfsuzanasantos/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#E1306C] transition-colors text-sm"
+            >
+              <Instagram className="w-4 h-4 text-[#E1306C]" />
+              <span className="hidden sm:inline">@enfsuzanasantos</span>
+            </a>
+            <a 
+              href="mailto:suzanangelica@hotmail.com"
+              className="flex items-center gap-2 text-brand-dark font-medium hover:text-brand-primary transition-colors text-sm"
+            >
+              <Mail className="w-4 h-4 text-brand-primary" />
+              <span className="hidden md:inline">suzanangelica@hotmail.com</span>
+            </a>
+          </div>
+        </header>
+      )}
 
       <main className="flex-grow">
         <Outlet />

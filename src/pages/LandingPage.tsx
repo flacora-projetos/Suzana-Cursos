@@ -36,7 +36,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="order-2 lg:order-1"
+              className="order-1"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-light/50 text-brand-dark font-medium text-sm mb-6 shadow-sm border border-brand-primary/20">
                 <ShieldCheck className="w-4 h-4 text-brand-primary" />
@@ -48,6 +48,17 @@ export default function LandingPage() {
               <p className="text-lg text-brand-text/90 mb-8 leading-relaxed max-w-2xl">
                 Enfermeira há <strong>23 anos</strong>. Especialista em feridas e curativos há <strong>10 anos</strong>. <strong>Estomaterapeuta</strong> e <strong>Laserterapeuta</strong>. Especialista em <strong>Segurança do Paciente</strong>. Professora responsável pela área de <strong>curativos graves</strong> em Aparecida de Goiânia. Atendimento e ensino com método, evidência e acompanhamento.
               </p>
+
+              {/* NEW CTA FOR FREE CLASS MOVED HERE */}
+              <div className="mb-10">
+                <Link 
+                  to="/aula-gratis"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
+                >
+                  <PlayCircle className="w-5 h-5" />
+                  Assistir aula gratuita
+                </Link>
+              </div>
               
               <ul className="space-y-3 mb-10 max-w-2xl">
                 {[
@@ -77,17 +88,6 @@ export default function LandingPage() {
                   QUERO ATENDIMENTO
                 </a>
               </div>
-              
-              {/* NEW CTA FOR FREE CLASS */}
-              <div className="mt-6">
-                <Link 
-                  to="/aula-gratis"
-                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
-                >
-                  <PlayCircle className="w-5 h-5" />
-                  Assistir aula gratuita
-                </Link>
-              </div>
 
               <p className="text-sm text-brand-dark/80 mt-4 flex items-center gap-2 font-medium">
                 <AlertCircle className="w-4 h-4 text-brand-primary" />
@@ -99,7 +99,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="order-1 lg:order-2 relative flex justify-center items-center w-full"
+              className="order-2 relative flex justify-center items-center w-full"
             >
               <div className="relative w-full max-w-lg lg:max-w-full">
                 <div className="absolute inset-0 bg-brand-primary/10 rounded-[2rem] transform rotate-3 scale-105 -z-10"></div>
