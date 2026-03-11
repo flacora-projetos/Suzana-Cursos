@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   CheckCircle2, 
@@ -24,11 +24,22 @@ const LOGO_URL = "https://lh3.googleusercontent.com/d/1GMbvFCPW0nuy6KHkJLzUJsRhn
 const HEADER_LOGO_URL = "https://lh3.googleusercontent.com/d/1iJGYeSMFhxK2XdYOCznyOpnY4wTAYMKS";
 const HERO_URL = "https://lh3.googleusercontent.com/d/1M-MNY7A_gzbfdJSFaG9OyuAEhOAvuwAV";
 
-const WhatsAppButton = ({ text, className = "", icon = true }: { text: string, className?: string, icon?: boolean }) => (
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
+const WhatsAppButton = ({ text, className = "", icon = true, eventName = "click_whatsapp" }: { text: string, className?: string, icon?: boolean, eventName?: string }) => (
   <a 
     href={WHATSAPP_LINK} 
     target="_blank" 
     rel="noopener noreferrer"
+    onClick={() => {
+      if (window.fbq) {
+        window.fbq('trackCustom', eventName);
+      }
+    }}
     className={`inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg ${className}`}
   >
     {icon && <MessageCircle className="w-5 h-5" />}
@@ -46,6 +57,12 @@ const SectionHeading = ({ children, subtitle, titleClassName = "text-brand-dark"
 export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq('trackCustom', 'view_lp');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-brand-bg font-sans text-brand-text overflow-x-hidden">
       {/* HEADER */}
@@ -55,6 +72,7 @@ export default function App() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
             className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#25D366] transition-colors text-sm"
           >
             <MessageCircle className="w-4 h-4 text-[#25D366]" />
@@ -122,6 +140,7 @@ export default function App() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
                   className="inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-brand-dark/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
                 >
                   QUERO ATENDIMENTO
@@ -487,7 +506,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <WhatsAppButton text="QUERO OS CURSOS" className="w-full bg-brand-primary hover:bg-brand-primary/90" />
+              <WhatsAppButton text="QUERO OS CURSOS" className="w-full bg-brand-primary hover:bg-brand-primary/90" eventName="click_course_interest" />
             </div>
           </div>
         </div>
@@ -626,6 +645,7 @@ export default function App() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
                 className="flex items-center gap-2 hover:text-[#25D366] transition-colors text-sm"
               >
                 <MessageCircle className="w-4 h-4" />
