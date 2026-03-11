@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { PlayCircle, MessageCircle, GraduationCap, Bell } from 'lucide-react';
-import { SectionHeading, WhatsAppButton, WHATSAPP_LINK } from '../components/Shared';
+import { SectionHeading, WhatsAppButton, WHATSAPP_LINK, trackEvent } from '../components/Shared';
 
 // FUTURE: Replace this with actual video embed URL when ready
 const VIDEO_EMBED_URL = "";
@@ -16,6 +16,10 @@ const VideoPlaceholder = () => (
 );
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    trackEvent('view_thankyou');
+  }, []);
+
   return (
     <section className="py-20 bg-brand-bg min-h-[calc(100vh-60px)]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,6 +42,15 @@ export default function ThankYouPage() {
           <div className="mb-16 max-w-4xl mx-auto">
             {VIDEO_EMBED_URL ? (
               <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                {/* 
+                  FUTURE VIDEO TRACKING IMPLEMENTATION:
+                  When the real video player (e.g., YouTube, Vimeo, or HTML5) is integrated,
+                  attach event listeners to its API to fire the following Meta Pixel events:
+                  
+                  - trackEvent('play_video') -> Fire when the user clicks play for the first time.
+                  - trackEvent('50_percent_video') -> Fire when the video reaches 50% completion.
+                  - trackEvent('90_percent_video') -> Fire when the video reaches 90% completion.
+                */}
                 <iframe 
                   src={VIDEO_EMBED_URL} 
                   title="Aula Gratuita"
@@ -70,6 +83,7 @@ export default function ThankYouPage() {
               <p className="text-sm text-white/70 mb-6 flex-grow">Conheça nossos cursos completos e treinamentos para profissionais.</p>
               <a 
                 href="/#cursos" // FUTURE: Update to actual courses page or section
+                onClick={() => trackEvent('click_course_offer')}
                 className="w-full inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-3 px-4 rounded-full transition-all text-sm"
               >
                 Conhecer os Cursos
@@ -86,6 +100,7 @@ export default function ThankYouPage() {
                 href={WHATSAPP_LINK} // FUTURE: Update to actual waitlist form
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('click_waitlist')}
                 className="w-full inline-flex items-center justify-center gap-2 bg-brand-light hover:bg-brand-light/80 text-brand-dark font-semibold py-3 px-4 rounded-full transition-all text-sm border border-brand-primary/20"
               >
                 Lista de Espera

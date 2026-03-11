@@ -15,15 +15,13 @@ import {
   BookOpen,
   PlayCircle
 } from 'lucide-react';
-import { WhatsAppButton, SectionHeading, HERO_URL, LOGO_URL, WHATSAPP_LINK } from '../components/Shared';
+import { WhatsAppButton, SectionHeading, HERO_URL, LOGO_URL, WHATSAPP_LINK, trackEvent } from '../components/Shared';
 
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    if (window.fbq) {
-      window.fbq('trackCustom', 'view_lp');
-    }
+    trackEvent('view_lp');
   }, []);
 
   return (
@@ -53,6 +51,7 @@ export default function LandingPage() {
               <div className="mb-10">
                 <Link 
                   to="/aula-gratis"
+                  onClick={() => trackEvent('start_form')}
                   className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
                 >
                   <PlayCircle className="w-5 h-5" />
@@ -82,7 +81,7 @@ export default function LandingPage() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
+                  onClick={() => trackEvent('click_whatsapp')}
                   className="inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-brand-dark/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
                 >
                   QUERO ATENDIMENTO
@@ -153,8 +152,16 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              <div className="pt-4">
-                <WhatsAppButton text="FALAR COM A SUZANA NO WHATSAPP" />
+              <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                <WhatsAppButton text="FALAR COM A SUZANA NO WHATSAPP" className="w-full sm:w-auto" />
+                <Link 
+                  to="/aula-gratis"
+                  onClick={() => trackEvent('start_form')}
+                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+                >
+                  <PlayCircle className="w-5 h-5" />
+                  Assistir aula gratuita
+                </Link>
               </div>
             </div>
             
@@ -237,8 +244,16 @@ export default function LandingPage() {
             </div>
           </div>
           
-          <div className="mt-12 text-center">
-            <WhatsAppButton text="FALAR NO WHATSAPP" />
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+            <WhatsAppButton text="FALAR NO WHATSAPP" className="w-full sm:w-auto" />
+            <Link 
+              to="/aula-gratis"
+              onClick={() => trackEvent('start_form')}
+              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+            >
+              <PlayCircle className="w-5 h-5" />
+              Assistir aula gratuita
+            </Link>
           </div>
         </div>
       </section>
@@ -297,8 +312,16 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <WhatsAppButton text="AGENDAR PELO WHATSAPP" />
+          <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+            <WhatsAppButton text="AGENDAR PELO WHATSAPP" className="w-full sm:w-auto" />
+            <Link 
+              to="/aula-gratis"
+              onClick={() => trackEvent('start_form')}
+              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+            >
+              <PlayCircle className="w-5 h-5" />
+              Assistir aula gratuita
+            </Link>
           </div>
         </div>
       </section>
@@ -343,8 +366,16 @@ export default function LandingPage() {
             ))}
           </div>
           
-          <div className="mt-16 text-center">
-            <WhatsAppButton text="CHAMAR NO WHATSAPP" className="bg-[#25D366] hover:bg-[#20BD5A] text-white" />
+          <div className="mt-16 flex flex-col sm:flex-row justify-center gap-4">
+            <WhatsAppButton text="CHAMAR NO WHATSAPP" className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20BD5A] text-white" />
+            <Link 
+              to="/aula-gratis"
+              onClick={() => trackEvent('start_form')}
+              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+            >
+              <PlayCircle className="w-5 h-5" />
+              Assistir aula gratuita
+            </Link>
           </div>
         </div>
       </section>
@@ -449,7 +480,17 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              <WhatsAppButton text="QUERO OS CURSOS" className="w-full bg-brand-primary hover:bg-brand-primary/90" eventName="click_course_interest" />
+              <div className="flex flex-col gap-4">
+                <WhatsAppButton text="QUERO OS CURSOS" className="w-full bg-brand-primary hover:bg-brand-primary/90" eventName="click_course_interest" />
+                <Link 
+                  to="/aula-gratis"
+                  onClick={() => trackEvent('start_form')}
+                  className="inline-flex items-center justify-center gap-2 bg-brand-light hover:bg-brand-light/90 text-brand-dark font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full"
+                >
+                  <PlayCircle className="w-5 h-5" />
+                  Assistir aula gratuita
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -541,8 +582,16 @@ export default function LandingPage() {
                 ))}
               </div>
               
-              <div className="mt-12 text-center">
-                <WhatsAppButton text="CHAMAR NO WHATSAPP" />
+              <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <WhatsAppButton text="CHAMAR NO WHATSAPP" className="w-full sm:w-auto" />
+                <Link 
+                  to="/aula-gratis"
+                  onClick={() => trackEvent('start_form')}
+                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+                >
+                  <PlayCircle className="w-5 h-5" />
+                  Assistir aula gratuita
+                </Link>
               </div>
             </div>
           </div>

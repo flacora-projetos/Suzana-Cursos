@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { MessageCircle, Instagram, Mail } from 'lucide-react';
-import { WHATSAPP_LINK, LOGO_URL } from './Shared';
+import { WHATSAPP_LINK, LOGO_URL, trackEvent } from './Shared';
 
 export default function Layout() {
   const location = useLocation();
@@ -17,7 +17,7 @@ export default function Layout() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
+              onClick={() => trackEvent('click_whatsapp')}
               className="flex items-center gap-2 text-brand-dark font-medium hover:text-[#25D366] transition-colors text-sm"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
@@ -74,7 +74,7 @@ export default function Layout() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => window.fbq && window.fbq('trackCustom', 'click_whatsapp')}
+                onClick={() => trackEvent('click_whatsapp')}
                 className="flex items-center gap-2 hover:text-[#25D366] transition-colors text-sm"
               >
                 <MessageCircle className="w-4 h-4" />

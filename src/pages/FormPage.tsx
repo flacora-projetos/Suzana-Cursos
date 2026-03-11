@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ShieldCheck, ArrowRight, CheckCircle2, Star } from 'lucide-react';
+import { trackEvent } from '../components/Shared';
 
 export default function FormPage() {
   const navigate = useNavigate();
@@ -32,6 +33,10 @@ export default function FormPage() {
       alert("Por favor, insira um número de WhatsApp válido com DDD.");
       return;
     }
+    
+    // Track lead generation
+    trackEvent('generate_lead');
+    
     // FUTURE: Integrate with CRM or backend here
     // For now, just simulate submission and redirect
     navigate('/aula-liberada');
