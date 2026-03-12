@@ -52,7 +52,7 @@ export default function LandingPage() {
                 <Link 
                   to="/aula-gratis"
                   onClick={() => trackEvent('start_form')}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
+                  className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
                 >
                   <PlayCircle className="w-5 h-5" />
                   Assistir aula gratuita
@@ -82,7 +82,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackEvent('click_whatsapp')}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-brand-dark/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
+                  className="inline-flex items-center justify-center text-center gap-2 bg-brand-dark hover:bg-brand-dark/90 text-white font-semibold py-4 px-8 rounded-full transition-all w-full sm:w-auto text-lg shadow-lg"
                 >
                   QUERO ATENDIMENTO
                 </a>
@@ -157,10 +157,10 @@ export default function LandingPage() {
                 <Link 
                   to="/aula-gratis"
                   onClick={() => trackEvent('start_form')}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+                  className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
                 >
-                  <PlayCircle className="w-5 h-5" />
-                  Assistir aula gratuita
+                  <PlayCircle className="w-5 h-5 shrink-0" />
+                  <span>Assistir aula gratuita</span>
                 </Link>
               </div>
             </div>
@@ -249,10 +249,10 @@ export default function LandingPage() {
             <Link 
               to="/aula-gratis"
               onClick={() => trackEvent('start_form')}
-              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+              className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
             >
-              <PlayCircle className="w-5 h-5" />
-              Assistir aula gratuita
+              <PlayCircle className="w-5 h-5 shrink-0" />
+              <span>Assistir aula gratuita</span>
             </Link>
           </div>
         </div>
@@ -317,10 +317,10 @@ export default function LandingPage() {
             <Link 
               to="/aula-gratis"
               onClick={() => trackEvent('start_form')}
-              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+              className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
             >
-              <PlayCircle className="w-5 h-5" />
-              Assistir aula gratuita
+              <PlayCircle className="w-5 h-5 shrink-0" />
+              <span>Assistir aula gratuita</span>
             </Link>
           </div>
         </div>
@@ -371,10 +371,10 @@ export default function LandingPage() {
             <Link 
               to="/aula-gratis"
               onClick={() => trackEvent('start_form')}
-              className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+              className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
             >
-              <PlayCircle className="w-5 h-5" />
-              Assistir aula gratuita
+              <PlayCircle className="w-5 h-5 shrink-0" />
+              <span>Assistir aula gratuita</span>
             </Link>
           </div>
         </div>
@@ -485,7 +485,7 @@ export default function LandingPage() {
                 <Link 
                   to="/aula-gratis"
                   onClick={() => trackEvent('start_form')}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-light hover:bg-brand-light/90 text-brand-dark font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full"
+                  className="inline-flex items-center justify-center text-center gap-2 bg-brand-light hover:bg-brand-light/90 text-brand-dark font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full"
                 >
                   <PlayCircle className="w-5 h-5" />
                   Assistir aula gratuita
@@ -587,10 +587,10 @@ export default function LandingPage() {
                 <Link 
                   to="/aula-gratis"
                   onClick={() => trackEvent('start_form')}
-                  className="inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
+                  className="inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto"
                 >
-                  <PlayCircle className="w-5 h-5" />
-                  Assistir aula gratuita
+                  <PlayCircle className="w-5 h-5 shrink-0" />
+                  <span>Assistir aula gratuita</span>
                 </Link>
               </div>
             </div>

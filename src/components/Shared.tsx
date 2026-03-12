@@ -24,10 +24,10 @@ export const WhatsAppButton = ({ text, className = "", icon = true, eventName = 
     target="_blank" 
     rel="noopener noreferrer"
     onClick={() => trackEvent(eventName)}
-    className={`inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg ${className}`}
+    className={`inline-flex items-center justify-center text-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold py-4 px-8 rounded-full transition-all transform hover:scale-105 shadow-lg ${className}`}
   >
-    {icon && <MessageCircle className="w-5 h-5" />}
-    {text}
+    {icon && <MessageCircle className="w-5 h-5 shrink-0" />}
+    <span>{text}</span>
   </a>
 );
 

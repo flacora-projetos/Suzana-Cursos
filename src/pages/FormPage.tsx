@@ -175,17 +175,17 @@ export default function FormPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg text-lg disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-4 px-8 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg text-lg disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Enviando...
+                        <Loader2 className="w-5 h-5 shrink-0 animate-spin" />
+                        <span>Enviando...</span>
                       </>
                     ) : (
                       <>
-                        Quero assistir à aula gratuita
-                        <ArrowRight className="w-5 h-5" />
+                        <span>Quero assistir à aula gratuita</span>
+                        <ArrowRight className="w-5 h-5 shrink-0" />
                       </>
                     )}
                   </button>

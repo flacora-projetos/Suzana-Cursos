@@ -84,9 +84,9 @@ export default function ThankYouPage() {
               <a 
                 href="/#cursos" // FUTURE: Update to actual courses page or section
                 onClick={() => trackEvent('click_course_offer')}
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-3 px-4 rounded-full transition-all text-sm"
+                className="w-full inline-flex items-center justify-center text-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white font-semibold py-3 px-4 rounded-full transition-all text-sm"
               >
-                Conhecer os Cursos
+                <span>Conhecer os Cursos</span>
               </a>
             </div>
 
@@ -101,9 +101,9 @@ export default function ThankYouPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('click_waitlist')}
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-light hover:bg-brand-light/80 text-brand-dark font-semibold py-3 px-4 rounded-full transition-all text-sm border border-brand-primary/20"
+                className="w-full inline-flex items-center justify-center text-center gap-2 bg-brand-light hover:bg-brand-light/80 text-brand-dark font-semibold py-3 px-4 rounded-full transition-all text-sm border border-brand-primary/20"
               >
-                Lista de Espera
+                <span>Lista de Espera</span>
               </a>
             </div>
           </div>
