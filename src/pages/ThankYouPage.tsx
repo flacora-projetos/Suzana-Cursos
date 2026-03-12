@@ -4,7 +4,7 @@ import { PlayCircle, MessageCircle, GraduationCap, Bell } from 'lucide-react';
 import { SectionHeading, WhatsAppButton, WHATSAPP_LINK, trackEvent } from '../components/Shared';
 
 // FUTURE: Replace this with actual video embed URL when ready
-const VIDEO_EMBED_URL = "";
+const VIDEO_EMBED_URL = "https://www.youtube.com/embed/S-uoRbzMeco";
 
 const VideoPlaceholder = () => (
   <div className="aspect-video bg-brand-dark rounded-3xl overflow-hidden relative flex flex-col items-center justify-center text-white shadow-2xl border-4 border-brand-light/20">
@@ -39,9 +39,9 @@ export default function ThankYouPage() {
           </div>
 
           {/* VIDEO SECTION */}
-          <div className="mb-16 max-w-4xl mx-auto">
+          <div className="mb-16 max-w-sm mx-auto">
             {VIDEO_EMBED_URL ? (
-              <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <div className="aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 {/* 
                   FUTURE VIDEO TRACKING IMPLEMENTATION:
                   When the real video player (e.g., YouTube, Vimeo, or HTML5) is integrated,
