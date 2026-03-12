@@ -32,17 +32,18 @@ export const submitLead = async (data: LeadData): Promise<{ ok: boolean; message
 
     const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      // Using text/plain to avoid CORS preflight (OPTIONS request) which Apps Script does not support
+      mode: 'no-cors', // Crucial for Google Apps Script to avoid CORS/redirect issues on strict browsers (Safari/iOS)
       headers: {
         'Content-Type': 'text/plain;charset=utf-8',
       },
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    // With no-cors, the response is opaque (status 0). We cannot read the body.
+    // If fetch didn't throw a network error, we assume the request reached Google's servers.
     return {
-      ok: result.ok !== false,
-      message: result.message || "Lead salvo com sucesso.",
+      ok: true,
+      message: "Lead salvo com sucesso.",
     };
   } catch (error) {
     console.error("Error submitting lead:", error);
